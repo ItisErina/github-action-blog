@@ -24,7 +24,7 @@ jobs:
           git config --global user.name "ItisErina"
       - name: Install packages
         run: yarn install
-      - name: Set information to github 
+      - name: Set information to github
         run: |
           git remote set-url origin https://github.com/${{ github.repository }}.git
       - name: Format code
