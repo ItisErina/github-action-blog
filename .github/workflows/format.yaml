@@ -11,7 +11,7 @@ jobs:
     name: format, add, commit, push
     runs-on: ubuntu-latest
     env:
-        OWNER: ${{ github.repository_owner }}
+      MY_PAT: ${{ secrets.MY_PAT }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,12 +21,8 @@ jobs:
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
-          owner: ${{ env.OWNER }}
-      - name: Output token
-        env:
-          TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: |
-          echo "Access Token: ${TOKEN:4}"
+      - name: MY_PAT
+        run: echo "My PAT is $MY_PAT"
       - name: Set secrets
         env:
           APP_ID: ${{ secrets.APP_ID }}
