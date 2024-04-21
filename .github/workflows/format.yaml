@@ -8,14 +8,13 @@ on:
 
 jobs:
   format_through_push:
-    permissions: write-all
     name: format, add, commit, push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Generate token
-        id: generate_token
+        id: generate-token
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ secrets.APP_ID }}
