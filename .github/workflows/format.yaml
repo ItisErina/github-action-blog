@@ -20,8 +20,7 @@ jobs:
       - name: Install packages
         run: yarn install
       - name: Set information to github
-        run: |
-          git remote set-url origin https://github.com/${{ github.repository }}.git
+        run: git remote set-url origin https://github.com/${{ github.repository }}.git
       - name: Format code
         run: yarn run format
       - name: Check status
