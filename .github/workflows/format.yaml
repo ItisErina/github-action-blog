@@ -18,7 +18,7 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.email "ematsuo93@gmail.com"
-          git config --global user.name "erinamatsuo"
+          git config --global user.name "ItisErina"
       - name: Install packages
         run: yarn install
       - name: Set information to github 
