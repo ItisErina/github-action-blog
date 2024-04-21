@@ -10,6 +10,8 @@ jobs:
   format_through_push:
     name: format, add, commit, push
     runs-on: ubuntu-latest
+    env:
+        OWNER: ${{ github.repository_owner }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,6 +21,7 @@ jobs:
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
+          owner: ${{ env.OWNER }}
       - name: Output token
         env:
           TOKEN: ${{ steps.generate_token.outputs.token }}
