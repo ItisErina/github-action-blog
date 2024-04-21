@@ -39,4 +39,4 @@ jobs:
       - name: Commit changes
         run: git commit -m "Auto commit from GitHub Actions"
       - name: Push to github
-        run: git push --set-upstream https://username:${MY_PAT}@github.com/username/repo.git $BRANCH_NAME
+        run: git push --set-upstream https://username:${MY_PAT}@github.com/$GITHUB_REPOSITORY $BRANCH_NAME
