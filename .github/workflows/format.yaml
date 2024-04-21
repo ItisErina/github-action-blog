@@ -28,4 +28,4 @@ jobs:
       - name: Stage changes
         run: git diff --quiet && git diff --staged --quiet || git add .
       - name: Commit and Push changes
-        run: git diff --quiet && git diff --staged --quiet || git commit -m "Format code automatically" && git push origin HEAD:$(git symbolic-ref --short HEAD)
+        run: git diff --quiet && git diff --staged --quiet || (git commit -m "Format code automatically" && git push origin HEAD:$(git symbolic-ref --short HEAD))
