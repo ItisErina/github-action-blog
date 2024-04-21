@@ -15,28 +15,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Generate token
-        id: generate-token
-        uses: tibdex/github-app-token@v1
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
-      - name: MY_PAT
-        run: echo "My PAT is $MY_PAT"
-      - name: Set secrets
-        env:
-          APP_ID: ${{ secrets.APP_ID }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          GH_TOKEN: ${{ github.token }}
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-        run: |  
-          gh secret set MYSECRET --body "SECRET VALUE"
       - name: Install packages
         run: yarn install
       - name: Set information to github 
         run: |
-          git remote set-url origin https://${GITHUB_ACTOR}:${{ steps.generate_token.outputs.token }}@github.com/${GITHUB_REPOSITORY}
-          git config --global user.name "${GITHUB_ACTOR}"
+          git remote set-url origin https://${GITHUB_ACTOR}:${MY_PAT}@github.com/${GITHUB_REPOSITORY}
       - name: Checkout pushed branch
         run: |
           git fetch
@@ -52,5 +35,4 @@ jobs:
       - name: Commit changes
         run: git commit -m "Auto commit from GitHub Actions"
       - name: Push to github
-        run: |
-          git push origin $BRANCH_NAME
+        run: git push --set-upstream origin $BRANCH_NAME
