@@ -35,4 +35,4 @@ jobs:
       - name: Commit changes
         run: git commit -m "Auto commit from GitHub Actions"
       - name: Push to github
-        run: git push origin $BRANCH_NAME
+        run: git push --force origin $BRANCH_NAME
