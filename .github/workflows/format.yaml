@@ -19,6 +19,11 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+      - name: Output token
+        env:
+          TOKEN: ${{ steps.generate_token.outputs.token }}
+        run: |
+          echo "Access Token: ${TOKEN:4}"
       - name: Set secrets
         env:
           APP_ID: ${{ secrets.APP_ID }}
