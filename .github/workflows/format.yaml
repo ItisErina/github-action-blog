@@ -27,11 +27,9 @@ jobs:
       - name: Set information to github 
         run: |
           git remote set-url origin https://github.com/${{ github.repository }}.git
-      - name: Fetch latest changes
-        run: git fetch
       - name: Format code
         run: yarn run format
       - name: Check status
         run: git status
       - name: Commit to change
-        run: git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Automated fixes by GitHub Actions" && git pull --rebase && git push origin HEAD:${{ github.head_ref }})
+        run: git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Format code automatically" && git push origin HEAD:${{ github.head_ref }})
