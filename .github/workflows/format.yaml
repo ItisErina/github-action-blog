@@ -19,18 +19,13 @@ jobs:
         run: |
           git config --global user.email "ematsuo93@gmail.com"
           git config --global user.name "ItisErina"
-      - name: Fetch latest changes
-        run: git fetch
       - name: Install packages
         run: yarn install
       - name: Set information to github 
         run: |
           git remote set-url origin https://github.com/${{ github.repository }}.git
-      - name: Checkout pushed branch
-        run: |
-          git branch
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          git checkout $BRANCH_NAME
+      - name: Fetch latest changes
+        run: git fetch
       - name: Format code
         run: yarn run format
       - name: Check status
