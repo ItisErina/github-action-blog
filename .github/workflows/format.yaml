@@ -24,12 +24,12 @@ jobs:
       - name: Set information to github 
         run: |
           git remote set-url origin https://github.com/${{ github.repository }}.git
-      - name: Checkout pushed branch
-        run: |
-          git fetch
-          git branch
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          git checkout $BRANCH_NAME
+      # - name: Checkout pushed branch
+      #   run: |
+      #     git fetch
+      #     git branch
+      #     BRANCH_NAME=${GITHUB_REF#refs/heads/}
+      #     git checkout $BRANCH_NAME
       - name: Format code
         run: yarn run format
       - name: Check status
