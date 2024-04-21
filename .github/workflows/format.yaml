@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.MY_PAT }}
       - name: Configure Git
         run: |
           git config --global user.email "ematsuo93@gmail.com"
@@ -30,9 +33,5 @@ jobs:
         run: yarn run format
       - name: Check status
         run: git status
-      - name: Add changes
-        run: git add .
-      - name: Commit changes
-        run: git commit -m "Auto commit from GitHub Actions"
-      - name: Push to github
-        run: git push --force origin $BRANCH_NAME
+      - name: Commit to change
+        run: git diff --quiet && git diff --staged --quiet || (git add . && git commit -m "Automated fixes by GitHub Actions" && git pull --rebase && git push origin HEAD:${{ github.head_ref }})
